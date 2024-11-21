@@ -11,6 +11,9 @@ def process_tasks(all_tasks):
             for cf in custom_field_list:
                 if cf.get('name') == "🎟 ️ ️ Tipo de tarea - IBH OPS":
                     tipo_tarea = next((opt.get('name') for opt in cf.get('type_config', {}).get('options', []) if opt.get('orderindex') == cf.get('value')), None)
+                    break
+            horas_contratadas = next((field.get('value') for field in custom_field_list if field.get('name') == 'Horas de Contrato - OPS'), None)
+            horas_contratadas = int(horas_contratadas) if horas_contratadas else 0
 
             task = {
                 'ID': item.get('id'),
@@ -20,7 +23,7 @@ def process_tasks(all_tasks):
                 'Due Date': item.get('due_date'),
                 'Status': item.get('status', {}).get('status'),
                 'Main Task': item.get('parent'),
-                'Horas Contratadas': next((field.get('value') for field in custom_field_list if field.get('name') == 'Horas de Contrato - OPS'), None),
+                'Horas Contratadas': horas_contratadas,
                 'Tiempo Registrado': item.get('time_spent', 0) / 3600000,
                 'Tipo de Tarea': tipo_tarea
             }
