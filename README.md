@@ -19,7 +19,7 @@ Este proyecto está diseñado para integrar tareas de ClickUp con Tableau, expor
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/clickup-tableau-integration.git
+git clone https://github.com/DanielR59/clickup-tableau-integration.git
 cd clickup-tableau-integration
 pip install -r requirements.txt
 ```
